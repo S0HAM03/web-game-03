@@ -381,8 +381,8 @@ export function LobbyView({ roomCode, players, onBack, onStart }) {
              {players.length} OF {MAX_SLOTS} PLAYERS
            </p>
            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem" }}>
-            {players.map((p) => {
-              const c = PALETTE[p.color % PALETTE.length];
+            {players.map((p, index) => {
+              const c = PALETTE[(p.color !== undefined ? p.color : index) % PALETTE.length] || PALETTE[0];
               return (
                 <div key={p.id} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
                   <div style={{ position: "relative", width: 85, height: 85, background: c.bg, border: "4px solid #000", borderRadius: "20px", boxShadow: "6px 6px 0px #000", display: "flex", alignItems: "center", justifyContent: "center" }}>
