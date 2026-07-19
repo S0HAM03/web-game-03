@@ -5,11 +5,24 @@ const geckos = require('@geckos.io/server').default;
 const { Packr, Unpackr } = require('msgpackr');
 const cors = require('cors');
 
+const path = require('path');
+
 const packr = new Packr();
 const unpackr = new Unpackr();
 
 const app = express();
 app.use(cors());
+
+// Serve static client assets
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Fallback all non-API/non-Geckos routes to React Router
+app.get('*', (req, res, next) => {
+  if (req.path.includes('geckos.io')) {
+    return next();
+  }
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 const server = http.createServer(app);
 const io = geckos({

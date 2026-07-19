@@ -140,23 +140,22 @@ export function LandingView({ onHost, onJoin }) {
   });
   const HOW_STEPS = [
     { icon: <Gamepad2 size={32}/>, title: 'Create or Join', desc: 'Host a room or enter a 4-letter code to join your squad.', color: '#00FF66' },
-    { icon: <MousePointer2 size={32}/>, title: 'Share ONE Cursor', desc: 'Every player controls the same cursor. Coordinate or chaos ensues!', color: '#00E5FF' },
-    { icon: <Target size={32}/>, title: 'Complete 10 Levels', desc: 'Click targets, drag files, solve mazes, cut wires — together.', color: '#FFD700' },
-    { icon: <Trophy size={32}/>, title: 'Win Together', desc: 'Beat all 10 levels with shared lives. Teamwork is everything.', color: '#FF2A5F' },
+    { icon: <Target size={32}/>, title: 'Reaction Test', desc: 'Complete 5 rounds of the reaction speed test as fast as possible.', color: '#00E5FF' },
+    { icon: <Clock size={32}/>, title: 'Pure Speed', desc: 'Lowest single reaction time out of your 5 rounds determines your final score.', color: '#FFD700' },
+    { icon: <Trophy size={32}/>, title: 'Prove Who\'s Better', desc: 'Once everyone finishes, the leaderboard reveals the fastest player.', color: '#FF2A5F' },
   ];
   const FEATURES = [
     { icon: <Zap size={28}/>, title: 'Real-Time UDP', desc: 'Sub-50ms latency via WebRTC data channels.', color: '#00E5FF' },
-    { icon: <Shield size={28}/>, title: '3 Shared Lives', desc: 'Every mistake costs the whole team. Stay sharp.', color: '#FF2A5F' },
-    { icon: <Cpu size={28}/>, title: '10 Unique Levels', desc: 'Click, drag, sequence, maze, slider, boss & more.', color: '#9D00FF' },
-    { icon: <Clock size={28}/>, title: 'Speed Matters', desc: 'Your total clear time is tracked. Race the clock.', color: '#FFD700' },
-    { icon: <Users size={28}/>, title: 'Up to 8 Players', desc: 'Pack the lobby and watch the cursor go wild.', color: '#00FF66' },
+    { icon: <Shield size={28}/>, title: 'Anti-Cheat', desc: 'Early click penalties ensure fair gameplay.', color: '#FF2A5F' },
+    { icon: <Clock size={28}/>, title: 'Millisecond Precision', desc: 'Accurate to the millisecond to perfectly judge reactions.', color: '#FFD700' },
+    { icon: <Users size={28}/>, title: 'Up to 8 Players', desc: 'Challenge your whole friend group at once.', color: '#00FF66' },
     { icon: <Globe size={28}/>, title: 'Browser Native', desc: 'No downloads. Share link, open browser, play.', color: '#FF6600' },
   ];
   const STATS = [
     { value: '8', label: 'Max Players', color: '#00E5FF' },
-    { value: '10', label: 'Levels', color: '#FFD700' },
+    { value: '5', label: 'Rounds', color: '#FFD700' },
     { value: '<50', label: 'ms Latency', color: '#00FF66' },
-    { value: '∞', label: 'Chaos', color: '#FF2A5F' },
+    { value: '1', label: 'Winner', color: '#FF2A5F' },
   ];
 
   return (
@@ -167,10 +166,10 @@ export function LandingView({ onHost, onJoin }) {
         <div style={{ textAlign: 'center', marginBottom: '3rem', animation: 'floaty 4s ease-in-out infinite' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}><Swords size={64} color="#000" strokeWidth={2.5}/></div>
           <h1 className="display-font" style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', color: '#FFD700', WebkitTextStroke: '4px #000', textShadow: '8px 8px 0px #000', letterSpacing: 4, lineHeight: 1 }}>
-            HIVE<span style={{ color: '#00E5FF' }}>MIND</span>
+            WHO'S<span style={{ color: '#00E5FF' }}>BETTER?</span>
           </h1>
           <div style={{ marginTop: '1rem', background: '#000', color: '#FFF', display: 'inline-block', padding: '8px 20px', borderRadius: 99, fontWeight: 900, textTransform: 'uppercase', letterSpacing: 3 }}>
-            Co-op Chaos Simulator
+            Multiplayer Reaction Test
           </div>
         </div>
         <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: 800 }}>
@@ -197,15 +196,15 @@ export function LandingView({ onHost, onJoin }) {
         <div style={sectionStyle}>
           <div style={{ textAlign: 'center', marginBottom: '3rem', animation: 'slideUp 0.5s both' }}>
             <div style={{ display: 'inline-flex', background: '#FFD700', border: '4px solid #000', borderRadius: 12, padding: 12, boxShadow: '6px 6px 0 #000', marginBottom: '1rem' }}><Sparkles size={32} color="#000"/></div>
-            <h2 className="display-font" style={{ fontSize: '2.5rem', color: '#FFF', WebkitTextStroke: '2px #000', textShadow: '4px 4px 0 #000' }}>WHAT IS HIVEMIND?</h2>
+            <h2 className="display-font" style={{ fontSize: '2.5rem', color: '#FFF', WebkitTextStroke: '2px #000', textShadow: '4px 4px 0 #000' }}>WHAT IS WHO'S BETTER?</h2>
           </div>
           <div style={{ ...cardStyle('#FFF', 0.1), maxWidth: 700, margin: '0 auto' }}>
             <p style={{ fontSize: '1.15rem', lineHeight: 1.8, fontWeight: 800, fontFamily: "'Nunito'" }}>
-              <strong style={{ color: '#FF2A5F' }}>HiveMind</strong> is a free online multiplayer co-op game where every player controls the <strong style={{ color: '#00E5FF' }}>same cursor</strong>. 
-              Your inputs are averaged together — so if 4 people all move in different directions, the cursor drifts into pure <strong style={{ color: '#9D00FF' }}>chaos</strong>.
+              <strong style={{ color: '#FF2A5F' }}>Who's Better?</strong> is a free online multiplayer <strong style={{ color: '#00E5FF' }}>reaction test</strong>. 
+              Find out exactly who in your friend group has the fastest reflexes down to the millisecond.
             </p>
             <p style={{ fontSize: '1.15rem', lineHeight: 1.8, fontWeight: 800, fontFamily: "'Nunito'", marginTop: '1rem' }}>
-              Work together through 10 increasingly insane levels — from simple clicks to dragging files, solving mazes, and defusing a boss timer. One team. One cursor. No mercy.
+              Wait for the screen to turn green, then click as fast as possible. Complete 5 rounds to record your absolute best time. The lowest score takes the crown!
             </p>
           </div>
         </div>
@@ -279,11 +278,26 @@ export function LandingView({ onHost, onJoin }) {
 
       {/* ══ FOOTER ══ */}
       <div style={{ background: '#000', padding: '2rem', textAlign: 'center', borderTop: '4px solid #333' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
+          {[
+            { label: "About", url: "#/about" },
+            { label: "Contact Us", url: "#/contact-us" },
+            { label: "Privacy Policy", url: "#/privacy-policy" },
+            { label: "Cookie Declaration", url: "#/cookie-declaration" },
+            { label: "Legal", url: "#/legal" }
+          ].map(l => (
+            <a key={l.label} href={l.url} style={{ color: '#888', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 800, transition: 'color 0.2s', fontFamily: "'Nunito'" }}
+              onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+              onMouseLeave={e => e.currentTarget.style.color = '#888'}>
+              {l.label}
+            </a>
+          ))}
+        </div>
         <p style={{ color: '#555', fontWeight: 800, fontSize: '0.85rem', fontFamily: "'Nunito'" }}>
-          HIVEMIND © 2026 — Built with 💖 and WebRTC
+          WHO'S BETTER? © 2026 — Built with 💖 and WebRTC
         </p>
         <p style={{ color: '#333', fontWeight: 700, fontSize: '0.75rem', fontFamily: "'Nunito'", marginTop: 8 }}>
-          Not responsible for friendships destroyed during gameplay.
+          Not responsible for broken mice during gameplay.
         </p>
       </div>
     </div>

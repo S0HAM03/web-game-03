@@ -5,16 +5,25 @@ import { LandingView, JoinSetupView, HostSetupView, LobbyView, AnimatedCursor } 
 import ReactionGame from './components/ReactionGame';
 import Leaderboard from './components/Leaderboard';
 
-const SOCKET_URL = import.meta.env.VITE_BACKEND_URL || `http://${window.location.hostname}:3001`;
+import { PageContent } from './components/Subpages';
+
+const SOCKET_URL = import.meta.env.VITE_BACKEND_URL || `${window.location.protocol}//${window.location.hostname}${window.location.port ? ':' + window.location.port : ''}`;
 
 function App() {
   const [view, setView] = useState('landing'); // landing | host_setup | join_setup | lobby | reaction_game | leaderboard
+  const [hash, setHash] = useState(window.location.hash);
   const [roomCode, setRoomCode] = useState(null);
   const [lobbyError, setLobbyError] = useState('');
   const [activePlayers, setActivePlayers] = useState([]);
   const [isHost, setIsHost] = useState(false);
   const [gameResults, setGameResults] = useState(null);
   const [channel, setChannel] = useState(null);
+
+  useEffect(() => {
+    const handleHashChange = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   useEffect(() => {
     let urlObj;
@@ -86,6 +95,11 @@ function App() {
   };
 
   const renderView = () => {
+    if (hash && hash !== '#/' && hash !== '#') {
+      const pageId = hash.replace('#/', '');
+      return <PageContent pageId={pageId} onBack={() => { window.location.hash = ''; setView('landing'); }} />;
+    }
+
     if (view === 'landing') return <LandingView onHost={() => setView('host_setup')} onJoin={() => setView('join_setup')} />;
     if (view === 'host_setup') return <HostSetupView onBack={() => setView('landing')} onEnter={handleHost} error={lobbyError} />;
     if (view === 'join_setup') return <JoinSetupView onBack={() => setView('landing')} onEnter={handleJoin} error={lobbyError} />;
